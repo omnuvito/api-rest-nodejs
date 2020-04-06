@@ -1,0 +1,29 @@
+{
+  "name": "api-rest-nodejs",
+  "version": "1.0.0",
+  "description": "A simple API Rest",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omnuvito/api-rest-nodejs.git"
+  },
+  "keywords": [
+    "api",
+    "rest",
+    "simple",
+    "node",
+    "nodejs"
+  ],
+  "author": "Jose Alvarez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/omnuvito/api-rest-nodejs/issues"
+  },
+  "homepage": "https://github.com/omnuvito/api-rest-nodejs#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
