@@ -1,7 +1,16 @@
-const express = require('express');
-const router = express.Router();
-const userController = require('../controllers/UserController');
+'use strict';
 
-router.get('/users', userController.getUsers);
+const v1 = '/api/v1';
 
-module.exports = router;
+module.exports = function (app) {
+    var user = require('../controllers/UserController');
+
+    app.route(`${v1}/users`)
+        .get(user.all)
+        .post(user.create);
+
+    app.route(`${v1}/users/:userId`)
+        .get(user.getById)
+        .put(user.update)
+        .delete(user.remove)
+};
