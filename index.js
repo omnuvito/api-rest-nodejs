@@ -3,11 +3,16 @@ var express = require('express'),
     port = process.env.PORT || 3000,
     mongoose = require('mongoose'),
     User = require('./src/models/userModel'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    dotenv = require('dotenv');
 
-mongoose.connect('mongodb+srv://far_admin:oAzCL535PDocLlL0@far-cluster-s7vb8.mongodb.net/far?retryWrites=true&w=majority', {
-   useNewUrlParser: true
-});
+dotenv.config();
+
+mongoose.connect(
+    `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONDODB_PASSW}@${process.env.MONGODB_URL}`,
+    {
+       useNewUrlParser: true
+    });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
