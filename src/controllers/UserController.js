@@ -1,21 +1,50 @@
 'use strict';
 
+var mongoose = require('mongoose'),
+    User = mongoose.model('User');
+
 exports.all = function (req, res) {
-    res.send(['Jose Alvarez', 'Emilio Caccia'])
+    User.find({}, function(err, users) {
+        if (err) {
+            res.send(err);
+        }
+        res.json(users);
+    });
 };
 
 exports.create = function (req, res) {
-    res.send('Usuario creado con exito');
+    var newUser = new User(req.body);
+    newUser.save(function(err, users) {
+        if (err) {
+            res.send(err);
+        }
+        res.json(users);
+    });
+};
+
+exports.read = function (req, res) {
+    User.findById(req.params.userId, function(err, user) {
+        if (err) {
+            res.send(err);
+        }
+        res.json(user);
+    });
 };
 
 exports.update = function (req, res) {
-    res.send('Usuario actualizado con exito');
+    User.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true}, function(err, user) {
+        if (err) {
+            res.send(err);
+        }
+        res.json(user);
+    });
 };
 
 exports.remove = function (req, res) {
-    res.send('Usuario eliminado con exito');
-};
-
-exports.getById = function (req, res) {
-    res.send('Jose Alvarez');
+    User.remove({_id: req.params.userId}, function(err, user) {
+        if (err) {
+            res.send(err);
+        }
+        res.json({ message: 'User successfully deleted' });
+    });
 };

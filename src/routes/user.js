@@ -10,7 +10,7 @@ module.exports = function (app) {
         .post(user.create);
 
     app.route(`${v1}/users/:userId`)
-        .get(user.getById)
+        .get(user.read)
         .put(user.update)
         .delete(user.remove)
 };
