@@ -1,12 +1,13 @@
 var express = require('express'),
     app = express(),
-    port = process.env.PORT || 3000,
     mongoose = require('mongoose'),
     User = require('./src/models/userModel'),
     bodyParser = require('body-parser'),
     dotenv = require('dotenv');
 
 dotenv.config();
+
+var port = process.env.APP_PORT || 3000;
 
 mongoose.connect(
     `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONDODB_PASSW}@${process.env.MONGODB_URL}`,
