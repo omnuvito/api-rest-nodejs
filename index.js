@@ -1,12 +1,18 @@
 var express = require('express'),
     app = express(),
     mongoose = require('mongoose'),
-    User = require('./src/models/userModel'),
     bodyParser = require('body-parser'),
     dotenv = require('dotenv');
 
+//Models
+var User = require('./src/models/userModel');
+
+//Routes
+var userRoutes = require('./src/routes/user');
+
 dotenv.config();
 
+//Port
 var port = process.env.APP_PORT || 3000;
 
 mongoose.connect(
@@ -18,9 +24,7 @@ mongoose.connect(
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var routes = require('./src/routes/user');
-
-routes(app);
+userRoutes(app);
 
 app.listen(port);
 
