@@ -16,10 +16,9 @@ dotenv.config();
 var port = process.env.APP_PORT || 3000;
 
 mongoose.connect(
-    `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONDODB_PASSW}@${process.env.MONGODB_URL}`,
-    {
-       useNewUrlParser: true
-    });
+    `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONDODB_PASSW}@far-cluster-s7vb8.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority`,
+    {useNewUrlParser: true, useUnifiedTopology: true})
+    .catch(error => handleError(error));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
